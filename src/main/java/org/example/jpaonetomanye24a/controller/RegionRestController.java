@@ -18,7 +18,7 @@ public class RegionRestController {
     @Autowired
     RegionRepository regionRepository;
 
-    @GetMapping("regioner")
+    @GetMapping("/regioner")
     public List<Region> getRegioner() {
         List<Region> lstRegioner = regionRepository.findAll();
         return lstRegioner;
@@ -36,7 +36,7 @@ public class RegionRestController {
         return ResponseEntity.ok("Received kode: " + kode + ", navn: " + navn);
     }
 
-    @GetMapping("region/name/{name}")
+    @GetMapping("/region/name/{name}")
     public Region getRegionByName(@PathVariable String name) {
         var obj = regionRepository.findRegionByNavn(name).orElseThrow(() -> new ResourceNotFoundException("Region ikke fundet med navn =" + name));
         return (Region) obj;

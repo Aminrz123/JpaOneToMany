@@ -17,16 +17,11 @@ import java.nio.file.Paths;
 @RestController
 public class ExceptController {
 
-    @GetMapping("/")
-    public String hello() {
-        return "hello";
-    }
-
     @GetMapping("/fileold/{filename}")
-    public String getFilenameOld(@PathVariable String filename) {
+    public String getFilenameOld(@PathVariable String filContent) {
         String fileContent = "";
         try {
-            FileInputStream fs = new FileInputStream("c:/AFILE/" + filename);
+            FileInputStream fs = new FileInputStream("c:/AFILE/" + fileContent);
             try {
                 byte[] bArr = fs.readAllBytes();
                 fileContent = new String(bArr);
@@ -39,7 +34,7 @@ public class ExceptController {
         } catch (FileNotFoundException fileNotFoundException) {
             fileContent = fileNotFoundException.getMessage();
         }
-        return filename;
+        return fileContent;
     }
 
     @GetMapping("/file/{filename}")

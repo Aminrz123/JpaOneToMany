@@ -22,6 +22,10 @@ public class KommuneRestController {
     @Autowired
     ApiServiceGetKommuner apiServiceGetKommuner;
 
+    @GetMapping("/kommune")
+    public List<Kommune> getKommunerAlias() {
+        return kommuneRepository.findAll();
+    }
     @GetMapping("/kommuner")
     public List<Kommune> getKommuner() {
         return kommuneRepository.findAll();
@@ -63,5 +67,6 @@ public class KommuneRestController {
         kommuneRepository.deleteById(kode);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+
 
 }

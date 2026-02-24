@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FormRegion</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+</head>
+
+<body>
+<header class="topbar">
+    <div class="wrap">
+        <h1>FormRegion</h1>
+        <p class="muted">Opret regioner og kommuner (JPA OneToMany) via REST — og browse dem via dropdown.</p>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="grid">
+        <!-- OPRET REGION -->
+        <div class="card">
+            <h2>Opret Region</h2>
+
+            <div class="field">
+                <label for="regionKode">Kode (4 tegn)</label>
+                <input id="regionKode" maxlength="4" placeholder="1084" />
+            </div>
+
+            <div class="field">
+                <label for="regionNavn">Navn</label>
+                <input id="regionNavn" placeholder="TestRegion" />
+            </div>
+
+            <div class="field">
+                <label for="regionHref">Href</label>
+                <input id="regionHref" placeholder="test" />
+            </div>
+
+            <div class="actions">
+                <button class="btn primary" id="btnCreateRegion">Opret region</button>
+                <button class="btn" id="btnReload">Reload data</button>
+            </div>
+
+            <div class="toast" id="toastRegion"></div>
+        </div>
+
+        <!-- OPRET KOMMUNE + DROPDOWN -->
+        <div class="card">
+            <h2>Opret Kommune</h2>
+
+            <div class="field">
+                <label for="kommuneKode">Kommune-kode (4 tegn)</label>
+                <input id="kommuneKode" maxlength="4" placeholder="0101" />
+            </div>
+
+            <div class="field">
+                <label for="kommuneNavn">Navn</label>
+                <input id="kommuneNavn" placeholder="København" />
+            </div>
+
+            <div class="field">
+                <label for="kommuneHref">Href</label>
+                <input id="kommuneHref" placeholder="x" />
+            </div>
+
+            <div class="field">
+                <label for="kommuneHrefPhoto">HrefPhoto</label>
+                <input id="kommuneHrefPhoto" placeholder="x" />
+            </div>
+
+            <div class="field">
+                <label for="regionSelect">Region (dropdown)</label>
+                <select id="regionSelect">
+                    <option value="" selected disabled>Vælg region...</option>
+                </select>
+            </div>
+
+            <div class="actions">
+                <button class="btn primary" id="btnCreateKommune">Opret kommune</button>
+            </div>
+
+            <div class="toast" id="toastKommune"></div>
+        </div>
+    </section>
+
+    <!-- MASTER-DETAIL -->
+    <section class="card wide">
+        <div class="cardHead">
+            <h2>Region → Kommuner</h2>
+            <p class="muted" id="selectedRegionText">Vælg en region i dropdown for at se kommuner.</p>
+        </div>
+
+        <div class="twoCol">
+            <div>
+                <h3 class="sub">Regioner</h3>
+                <div id="regionList" class="list"></div>
+            </div>
+
+            <div>
+                <h3 class="sub">Kommuner i valgt region</h3>
+                <div id="kommuneList" class="list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERSIGT -->
+    <section class="card wide">
+        <h2>Regioner og kommuner (oversigt)</h2>
+
+        <div class="twoCol">
+            <div>
+                <h3 class="sub">Alle regioner</h3>
+                <div id="allRegions" class="list"></div>
+            </div>
+
+            <div>
+                <h3 class="sub">Alle kommuner</h3>
+                <div id="allKommuner" class="list"></div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
